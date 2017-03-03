@@ -17,6 +17,8 @@ public class FacebookInformator {
     public static void main(String[] args)
     {
         MainGUI mainWindows = new MainGUI();
+        Database db = new Database();
+        
 
     }
     
