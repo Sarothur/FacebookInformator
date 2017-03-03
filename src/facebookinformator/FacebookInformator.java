@@ -14,9 +14,10 @@ public class FacebookInformator {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-//fuck you, mr filip 
+    public static void main(String[] args)
+    {
+        MainGUI mainWindows = new MainGUI();
+
     }
     
 }
