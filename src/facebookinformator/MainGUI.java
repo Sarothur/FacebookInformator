@@ -32,21 +32,16 @@ public class MainGUI
         
        f.setLayout(null);
        f.setSize(800,600);
+       f.setResizable(false);
        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        try {
             f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("picture.png")))));
         } catch (IOException e) {
         }
-       
-       bSingle.setLayout(null);
-       bPeople.setLayout(null);
+      
        bSingle.setBounds(50, 50, 200, 50);
        bPeople.setBounds(50, 110, 200, 50);
-       bSingle.setActionCommand("Jednotlivec");
-       bPeople.setActionCommand("Skupina");
-       bSingle.setMnemonic(KeyEvent.VK_D);
-       bPeople.setMnemonic(KeyEvent.VK_M);
-      
+ 
        bSingle.addActionListener(new ActionListener()
                {
                     public void actionPerformed(ActionEvent e) 
