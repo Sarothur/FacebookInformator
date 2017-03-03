@@ -55,7 +55,10 @@ public class GroupPeople
         JLabel lAge = new JLabel("Věk:");
         JTextField txtAge = new JTextField("");
         lAge.setBounds(50, 150, 50, 25);
-        txtAge.setBounds(100, 150, 100, 25);    
+        txtAge.setBounds(100, 150, 100, 25);   
+        
+        JTextField txtAge2 = new JTextField("");
+        txtAge2.setBounds(210, 150, 100, 25);  
         
         bSubmit.setBounds(50, 350, 200, 50);
         
@@ -63,7 +66,7 @@ public class GroupPeople
                {
                     public void actionPerformed(ActionEvent e) 
                     {
-                     new GroupResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText());  
+                     new GroupResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText(), txtAge2.getText());  
                     }
                 });
         
@@ -75,6 +78,7 @@ public class GroupPeople
         fG.add(txtAge);   
         fG.add(bSubmit);
         fG.add(lTitle);
+        fG.add(txtAge2);
         
         fG.setVisible(true);
      
