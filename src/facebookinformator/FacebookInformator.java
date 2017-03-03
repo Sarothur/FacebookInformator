@@ -16,6 +16,7 @@ public class FacebookInformator {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+//fuck you
     }
     
 }
