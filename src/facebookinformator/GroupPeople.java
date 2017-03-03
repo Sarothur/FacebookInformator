@@ -6,6 +6,8 @@
 package facebookinformator;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -56,6 +58,14 @@ public class GroupPeople
         txtAge.setBounds(100, 150, 100, 25);    
         
         bSubmit.setBounds(50, 350, 200, 50);
+        
+        bSubmit.addActionListener(new ActionListener()
+               {
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                     new GroupResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText());  
+                    }
+                });
         
         fG.add(lFirstN);
         fG.add(txtFirstN);
