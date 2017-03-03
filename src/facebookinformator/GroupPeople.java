@@ -40,7 +40,7 @@ public class GroupPeople
         }
         JLabel lTitle = new JLabel("Skupina lidí");
         lTitle.setFont(new Font("Serif", Font.PLAIN, 44));
-        lTitle.setBounds(40, 5, 400, 44);
+        lTitle.setBounds(40, 2, 400, 44);
         
         JLabel lFirstN = new JLabel("Jméno:");
         JTextField txtFirstN = new JTextField("");

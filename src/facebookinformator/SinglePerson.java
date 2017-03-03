@@ -7,6 +7,8 @@ package facebookinformator;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -37,24 +39,13 @@ public class SinglePerson
         fS.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         try {
-            fS.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("picture.png")))));
+            fS.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("picture2.png")))));
         } catch (IOException e) {
         }
         
-        /*JRadioButton option1 = new JRadioButton("Pomocí HTML", false);
-        JRadioButton option2 = new JRadioButton("Parametry", true);
-        option1.setBounds(50, 25, 125, 20);
-        option2.setBounds(185, 25, 100, 20);
-        
-        ButtonGroup group = new ButtonGroup();
-        group.add(option1);
-        group.add(option2);
-       
-        fS.add(option1);
-        fS.add(option2);*/
         JLabel lTitle = new JLabel("Jednotlivec");
         lTitle.setFont(new Font("Serif", Font.PLAIN, 44));
-        lTitle.setBounds(40, 5, 300, 44);
+        lTitle.setBounds(40, 2, 300, 44);
         
         JLabel lFirstN = new JLabel("Jméno:");
         JTextField txtFirstN = new JTextField("");
@@ -69,14 +60,56 @@ public class SinglePerson
         JLabel lAge = new JLabel("Věk:");
         JTextField txtAge = new JTextField("");
         lAge.setBounds(50, 150, 50, 25);
-        txtAge.setBounds(100, 150, 100, 25);
+        txtAge.setBounds(100, 150, 40, 25);
 
-        JLabel lHTML = new JLabel("HTML:");
-        JTextField txtHTML = new JTextField("");
-        lHTML.setBounds(50, 200, 50, 25);
-        txtHTML.setBounds(100, 200, 100, 25);  
+        JTextField txtAge2 = new JTextField("");
+        txtAge2.setBounds(160, 150, 40, 25);
         
-        bSubmit.setBounds(50, 350, 200, 50);
+        JLabel lEmail = new JLabel("Email:");
+        JTextField txtEmail = new JTextField("");
+        lEmail.setBounds(50, 200, 50, 25);
+        txtEmail.setBounds(100, 200, 100, 25);  
+        
+        JLabel lGender = new JLabel("Gender:");
+        JTextField txtGender = new JTextField("");
+        lGender.setBounds(50, 250, 50, 25);
+        txtGender.setBounds(100, 250, 100, 25);  
+        
+        JLabel lCity = new JLabel("Město:");
+        JTextField txtCity = new JTextField("");
+        lCity.setBounds(230, 50, 50, 25);
+        txtCity.setBounds(280, 50, 100, 25);
+        
+        JLabel lCountry = new JLabel("Země:");
+        JTextField txtCountry = new JTextField("");
+        lCountry.setBounds(230, 100, 50, 25);
+        txtCountry.setBounds(280, 100, 100, 25);
+        
+        JLabel lIP = new JLabel("IP adresa:");
+        JTextField txtIP = new JTextField("");
+        lIP.setBounds(210, 150, 100, 25);
+        txtIP.setBounds(280, 150, 100, 25); 
+        
+        JLabel lPhone = new JLabel("Telefon:");
+        JTextField txtPhone = new JTextField("");
+        lPhone.setBounds(220, 200, 50, 25);
+        txtPhone.setBounds(280, 200, 100, 25);
+        
+        JLabel lUniversity = new JLabel("Univerzita:");
+        JTextField txtUniversity = new JTextField("");
+        lUniversity.setBounds(210, 250, 100, 25);
+        txtUniversity.setBounds(280, 250, 100, 25); 
+        
+        bSubmit.setBounds(140, 300, 200, 50);
+        
+        bSubmit.addActionListener(new ActionListener()
+               {
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                     //if(!txtFirstN.getText().equals("") || !txtLastN.getText().equals("") || (!txtAge.getText().equals("") && !txtAge2.getText().equals("") ))
+                        new SingleResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText(), txtAge2.getText());  
+                    }
+                });
         
         fS.add(lFirstN);
         fS.add(txtFirstN);
@@ -84,10 +117,23 @@ public class SinglePerson
         fS.add(txtLastN);
         fS.add(lAge);
         fS.add(txtAge);   
-        fS.add(lHTML);
-        fS.add(txtHTML);
+        fS.add(lEmail);
+        fS.add(txtEmail);
         fS.add(bSubmit);
         fS.add(lTitle);
+        fS.add(txtAge2);
+        fS.add(lGender);
+        fS.add(txtGender);
+        fS.add(lCity);
+        fS.add(txtCity);
+        fS.add(lCountry);
+        fS.add(txtCountry);
+        fS.add(lIP);
+        fS.add(txtIP);
+        fS.add(lPhone);
+        fS.add(txtPhone);
+        fS.add(lUniversity);
+        fS.add(txtUniversity);
         
         fS.setVisible(true);
      }
