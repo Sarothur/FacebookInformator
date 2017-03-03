@@ -5,6 +5,7 @@
  */
 package facebookinformator;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -35,7 +36,7 @@ public class GroupResult
     public static String firstName, lastName, age, age2;
     static HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();  
     static Collection dataChart = new HashSet();
-            
+    static String title = "";        
             
     GroupResult(String firstName, String lastName, String age, String age2)
     {
@@ -44,6 +45,14 @@ public class GroupResult
      this.age = age;
      this.age2 = age2;
      
+     if(!firstName.equals(""))
+        title += " jména";
+     if(!lastName.equals(""))
+        title += " příjmení";
+     if(!age.equals(""))
+        title += " věku";
+     
+     
      createUI();
      /*
      napojeni na fb, vypocty
@@ -51,10 +60,11 @@ public class GroupResult
      fillHashMap();
      checkHashMap();
      
-     fGR.setContentPane(createDemoPanel());  
-     fGR.setVisible(true);
      
+     fGR.setVisible(true);
+     fGR.setContentPane(createDemoPanel());  
      dataChart.clear();
+     title = "";
     }
     
     
@@ -76,23 +86,22 @@ public class GroupResult
     DefaultPieDataset dataset = new DefaultPieDataset();
     
     for(Object var : dataChart)
-            {
+            {   
               String i = var.toString();
-              dataset.setValue(i, new Double(hm.get(var)));
+              String j = hm.get(var).toString();
+              if(j.equals("0")){}
+              else dataset.setValue(i, new Double(hm.get(var)));
               //System.out.println("Vek: " + var + ", pocet: " + hm.get(var));  
             }
     
-    /*dataset.setValue("Java", new Double(40));
-    dataset.setValue("C++", new Double(30));
-    dataset.setValue("C", new Double(20));
-    dataset.setValue("Pascal", new Double(10));*/
+    /*dataset.setValue("Pascal", new Double(10));*/
     return dataset;
     }
     
     private static JFreeChart createChart(PieDataset dataset)
     {
-    JFreeChart chart = ChartFactory.createPieChart(
-    "Chart title", // chart title
+    JFreeChart chart = ChartFactory.createPieChart3D(
+    "Statistika dle" + title, // chart title
     dataset, // data
     true, // include legend
     true,//tooltips
@@ -104,7 +113,14 @@ public class GroupResult
     public static JPanel createDemoPanel()
     {
     JFreeChart chart = createChart(createDataset());
-    return new ChartPanel(chart);
+    final PiePlot3D plot = ( PiePlot3D ) chart.getPlot( );             
+    plot.setStartAngle( 270 );             
+    plot.setForegroundAlpha( 0.60f );             
+    plot.setInteriorGap( 0.02 ); 
+    chart.getPlot().setBackgroundPaint(Color.WHITE);
+    ChartPanel Panel = new ChartPanel(chart);
+    Panel.setBackground(Color.WHITE);
+    return Panel;
     }
     
     public static void checkHashMap()
@@ -112,15 +128,19 @@ public class GroupResult
         int start = Integer.parseInt(age);
         int end = Integer.parseInt(age2);
         
-        Collection<?> keys = hm.keySet();
-        for(Object key : keys)
+        if(!age.equals("") && !age2.equals(""))
         {
-          if((int)key >= start && (int)key <= end)
-          {
-          dataChart.add(key);
-         // System.out.println("Vek: " + key + ", pocet: " + hm.get(key)); 
-          }
+            Collection<?> keys = hm.keySet();
+            for(Object key : keys)
+            {
+            if((int)key >= start && (int)key <= end)
+                {
+                dataChart.add(key);
+               // System.out.println("Vek: " + key + ", pocet: " + hm.get(key)); 
+                }
+            }
         }
+        
         
        /* for(Object var : dataChart)
             {

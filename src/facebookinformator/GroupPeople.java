@@ -66,7 +66,8 @@ public class GroupPeople
                {
                     public void actionPerformed(ActionEvent e) 
                     {
-                     new GroupResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText(), txtAge2.getText());  
+                     if(!txtFirstN.getText().equals("") || !txtLastN.getText().equals("") || (!txtAge.getText().equals("") && !txtAge2.getText().equals("") ))
+                        new GroupResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText(), txtAge2.getText());  
                     }
                 });
         
