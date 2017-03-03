@@ -51,16 +51,15 @@ public class MainGUI
                {
                     public void actionPerformed(ActionEvent e) 
                     {
-                     System.out.println("Jednotlivec");   
+                     new SinglePerson();  
                     }
                 });
-           
-  
+
        bPeople.addActionListener(new ActionListener()
                {
                     public void actionPerformed(ActionEvent e) 
                     {
-                     System.out.println("Skupina lidi");   
+                     new GroupPeople();  
                     }
                 });
        
