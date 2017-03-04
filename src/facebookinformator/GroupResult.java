@@ -33,25 +33,18 @@ import org.jfree.util.Rotation;
 public class GroupResult
 {
     public JFrame fGR = new JFrame("Facebook Informator");
-    public static String firstName, lastName, age, age2;
+    public static String txtLeft, txtRight;
     static HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();  
     static Collection dataChart = new HashSet();
     static String title = "";        
             
-    GroupResult(String firstName, String lastName, String age, String age2)
+    GroupResult(String txtLeft)
     {
-     this.firstName = firstName;
-     this.lastName = lastName;
-     this.age = age;
-     this.age2 = age2;
+     this.txtLeft = txtLeft;
+
      
-     if(!firstName.equals(""))
-        title += " jména";
-     if(!lastName.equals(""))
-        title += " příjmení";
-     if(!age.equals(""))
-        title += " věku";
-     
+     if(!txtLeft.equals(""))
+        title += " Levé";
      
      createUI();
      /*
@@ -125,10 +118,10 @@ public class GroupResult
     
     public static void checkHashMap()
     {
-        int start = Integer.parseInt(age);
-        int end = Integer.parseInt(age2);
+        //int start = Integer.parseInt(age);
+        //int end = Integer.parseInt(age2);
         
-        if(!age.equals("") && !age2.equals(""))
+        /*if(!age.equals("") && !age2.equals(""))
         {
             Collection<?> keys = hm.keySet();
             for(Object key : keys)
@@ -139,7 +132,7 @@ public class GroupResult
                // System.out.println("Vek: " + key + ", pocet: " + hm.get(key)); 
                 }
             }
-        }
+        }*/
         
         
        /* for(Object var : dataChart)
