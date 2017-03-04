@@ -95,12 +95,14 @@ public class GroupResult
     DefaultPieDataset dataset = new DefaultPieDataset();
     String i = "", j = "";
     String var2 = "";
+    if(hm.isEmpty()) dataset.setValue("Žaden neexistuje", 1);
     for(String var : hm.keySet())
-            {       
+            {  
+              if(var.equals("")) dataset.setValue("Žaden neexistuje", 1);
               dataset.setValue(var, new Double(hm.get(var)));
               //System.out.println("Vek: " + var + ", pocet: " + hm.get(var));  
             }
-    if(var2.equals("")) dataset.setValue("Žaden neexistuje", 1);
+    
     
     /*dataset.setValue("Pascal", new Double(10));*/
     return dataset;
