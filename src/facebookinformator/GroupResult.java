@@ -8,6 +8,7 @@ package facebookinformator;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,15 +34,17 @@ import org.jfree.util.Rotation;
 public class GroupResult
 {
     public JFrame fGR = new JFrame("Facebook Informator");
-    public static String txtLeft, txtRight;
-    static HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();  
+    public static String txtLeft, txtRight, group, group2;
+    static ArrayList<Person> finalPerson = new ArrayList<Person>();
     static Collection dataChart = new HashSet();
     static String title = "";        
             
-    GroupResult(String txtLeft)
+    GroupResult(String txtLeft, String txtRight, String group, String group2)
     {
      this.txtLeft = txtLeft;
-
+     this.txtRight = txtRight;
+     this.group = group;
+     this.group2 = group2;
      
      if(!txtLeft.equals(""))
         title += " Levé";
@@ -50,8 +53,8 @@ public class GroupResult
      /*
      napojeni na fb, vypocty
      */
-     fillHashMap();
-     checkHashMap();
+     
+     checkHashMap(txtLeft, txtRight, group, group2);
      
      
      fGR.setVisible(true);
@@ -116,11 +119,39 @@ public class GroupResult
     return Panel;
     }
     
-    public static void checkHashMap()
+    public static void checkHashMap(String l, String r, String g, String g2)
     {
-        //int start = Integer.parseInt(age);
-        //int end = Integer.parseInt(age2);
+        Database var = new Database();
+        ArrayList<Person> persons = var.getDB();
         
+        for(Person pom : persons)
+        {
+            if(g.equals("1"))
+                    {
+                    String first = pom.getFirstName();
+                    if(first.equals(l))
+                        {
+                        finalPerson.add(pom);
+                        }
+                    }
+            if(g.equals("2"))
+                    {
+                    String last = pom.getLastName();
+                    if(last.equals(l))
+                        {
+                        finalPerson.add(pom);
+                        }
+                    }
+            if(g.equals("3"))
+                    {
+                    String age = pom.getBirthDate();
+                    if(age.equals(l))
+                        {
+                        finalPerson.add(pom);
+                        }
+                    }
+        } 
+            
         /*if(!age.equals("") && !age2.equals(""))
         {
             Collection<?> keys = hm.keySet();
@@ -140,15 +171,4 @@ public class GroupResult
               System.out.println("Vek: " + var + ", pocet: " + hm.get(var));  
             }*/
     }
-    
-    public static void fillHashMap()
-    {
-        int j = 0; 
-        for(int i=10; i <= 100; i++)
-        {
-        j = i % 10;
-        hm.put(i,j);               
-        }
-    }
-    
 }
