@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -30,7 +31,7 @@ public class SinglePerson
      public JFrame fS = new JFrame("Facebook Informator");
      public JButton bSubmit = new JButton("Hledej");
      public JButton bNext = new JButton("Další");
-     
+     public Person pom = null;
      SinglePerson ()
      {
         
@@ -109,7 +110,69 @@ public class SinglePerson
                     public void actionPerformed(ActionEvent e) 
                     {
                      //if(!txtFirstN.getText().equals("") || !txtLastN.getText().equals("") || (!txtAge.getText().equals("") && !txtAge2.getText().equals("") ))
-                        new SingleResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText(), txtAge2.getText());  
+                        //new SingleResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText(), txtAge2.getText()); 
+                    //check(txtFirstN.getText(), txtLastN.getText(), txtAge.getText(), 
+                       //     txtEmail.getText(), txtGender.getText(), txtCity.getText(), txtCountry.getText(),
+                         //   txtIP.getText(), txtPhone.getText(), txtUniversity.getText());
+                    Database var = new Database();
+                    ArrayList<Person> persons = var.getDB();
+
+                    for(Person pom : persons)
+                        {
+                          if((txtFirstN.getText().equals(pom.getFirstName()) && (!txtFirstN.getText().equals(""))
+                                    && (txtLastN.getText().equals(pom.getLastName()))) && (!txtLastN.getText().equals(""))
+                                  && (txtAge.getText().equals(pom.getBirthDate())) && (!txtAge.getText().equals(""))
+                                  && (txtEmail.getText().equals(pom.getEmail())) && (!txtEmail.getText().equals("")))
+                            {
+                            txtGender.setText(pom.getGender());
+                            txtCity.setText(pom.getCity());
+                            txtCountry.setText(pom.getCountry());
+                            txtIP.setText(pom.getIP());
+                            txtPhone.setText(pom.getTelephone());
+                            txtUniversity.setText(pom.getUniversity());
+                             break;
+                            } 
+                          if((txtFirstN.getText().equals(pom.getFirstName()) && (!txtFirstN.getText().equals(""))
+                                    && (txtLastN.getText().equals(pom.getLastName()))) && (!txtLastN.getText().equals(""))
+                                  && (txtAge.getText().equals(pom.getBirthDate())) && (!txtAge.getText().equals("")))
+                            {
+                            txtEmail.setText(pom.getEmail());
+                            txtGender.setText(pom.getGender());
+                            txtCity.setText(pom.getCity());
+                            txtCountry.setText(pom.getCountry());
+                            txtIP.setText(pom.getIP());
+                            txtPhone.setText(pom.getTelephone());
+                            txtUniversity.setText(pom.getUniversity());
+                             break;
+                            } 
+                            else if((txtFirstN.getText().equals(pom.getFirstName()) && (!txtFirstN.getText().equals(""))
+                                    && (txtLastN.getText().equals(pom.getLastName()))) && (!txtLastN.getText().equals("")))
+                            {
+                            txtAge.setText(pom.getBirthDate());
+                            txtEmail.setText(pom.getEmail());
+                            txtGender.setText(pom.getGender());
+                            txtCity.setText(pom.getCity());
+                            txtCountry.setText(pom.getCountry());
+                            txtIP.setText(pom.getIP());
+                            txtPhone.setText(pom.getTelephone());
+                            txtUniversity.setText(pom.getUniversity());
+                             break;
+                            } 
+                            else if((txtFirstN.getText().equals(pom.getFirstName()) && (!txtFirstN.getText().equals(""))))
+                            {
+                            txtLastN.setText(pom.getLastName());
+                            txtAge.setText(pom.getBirthDate());
+                            txtEmail.setText(pom.getEmail());
+                            txtGender.setText(pom.getGender());
+                            txtCity.setText(pom.getCity());
+                            txtCountry.setText(pom.getCountry());
+                            txtIP.setText(pom.getIP());
+                            txtPhone.setText(pom.getTelephone());
+                            txtUniversity.setText(pom.getUniversity());
+                             break;
+                            }  
+
+                        }
                     }
                 });
         

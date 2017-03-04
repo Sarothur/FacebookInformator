@@ -50,12 +50,15 @@ public class GroupPeople
         
         JRadioButton bFirstN = new JRadioButton("Jméno");
         bFirstN.setSelected(true);
+        bFirstN.setActionCommand("1");
         
         JRadioButton bLastN = new JRadioButton("Příjmení");
         bLastN.setSelected(false);
+        bLastN.setActionCommand("2");
         
         JRadioButton bAge = new JRadioButton("Věk");
         bAge.setSelected(false);
+        bAge.setActionCommand("3");
         
         ButtonGroup group = new ButtonGroup();
         group.add(bFirstN);
@@ -68,12 +71,15 @@ public class GroupPeople
         
         JRadioButton bCountry = new JRadioButton("Země");
         bCountry.setSelected(true);
+        bCountry.setActionCommand("1");
         
         JRadioButton bCity = new JRadioButton("Město");
         bCity.setSelected(false);
+        bCity.setActionCommand("2");
         
         JRadioButton bUniversity = new JRadioButton("Univerzita");
         bUniversity.setSelected(false);
+        bUniversity.setActionCommand("3");
         
         ButtonGroup group2 = new ButtonGroup();
         group2.add(bCountry);
@@ -90,14 +96,15 @@ public class GroupPeople
         txtRight.setBounds(240, 200, 100, 25);
         
        
-        bSubmit.setBounds(50, 350, 200, 50);
+        bSubmit.setBounds(90, 250, 200, 50);
         
         bSubmit.addActionListener(new ActionListener()
                {
                     public void actionPerformed(ActionEvent e) 
                     {
-                     if(!txtLeft.getText().equals(""))
-                        new GroupResult(txtLeft.getText());  
+                     if((!txtLeft.getText().equals("") && txtRight.getText().equals(""))
+                       || (!txtRight.getText().equals("") && txtLeft.getText().equals("")))
+                        new GroupResult(txtLeft.getText(), txtRight.getText(), group.getSelection().getActionCommand(), group2.getSelection().getActionCommand());  
                     }
                 });
         

@@ -8,6 +8,7 @@ package facebookinformator;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,30 +34,45 @@ import org.jfree.util.Rotation;
 public class GroupResult
 {
     public JFrame fGR = new JFrame("Facebook Informator");
-    public static String txtLeft, txtRight;
-    static HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();  
+    public static String txtLeft, txtRight, group, group2;
+    static ArrayList<Person> finalPerson = new ArrayList<Person>();
+    static HashMap<String, Integer> hm = new HashMap<String, Integer>();
     static Collection dataChart = new HashSet();
     static String title = "";        
             
-    GroupResult(String txtLeft)
+    GroupResult(String txtLeft, String txtRight, String group, String group2)
     {
      this.txtLeft = txtLeft;
-
+     this.txtRight = txtRight;
+     this.group = group;
+     this.group2 = group2;
      
      if(!txtLeft.equals(""))
-        title += " Levé";
+        {
+            if(group.equals("1")) title += " Jména";
+            if(group.equals("2")) title += " Příjmení";
+            if(group.equals("3")) title += " Věku";
+        }
      
+        
+     if(!txtRight.equals(""))
+        {
+            if(group2.equals("1")) title += " Země";
+            if(group2.equals("2")) title += " Města";
+            if(group2.equals("3")) title += " Univerzity";
+        }
      createUI();
      /*
      napojeni na fb, vypocty
      */
-     fillHashMap();
-     checkHashMap();
+     
+     check(txtLeft, txtRight, group, group2);
      
      
      fGR.setVisible(true);
      fGR.setContentPane(createDemoPanel());  
      dataChart.clear();
+     hm.clear();
      title = "";
     }
     
@@ -77,15 +93,16 @@ public class GroupResult
     private static PieDataset createDataset() 
     {
     DefaultPieDataset dataset = new DefaultPieDataset();
-    
-    for(Object var : dataChart)
-            {   
-              String i = var.toString();
-              String j = hm.get(var).toString();
-              if(j.equals("0")){}
-              else dataset.setValue(i, new Double(hm.get(var)));
+    String i = "", j = "";
+    String var2 = "";
+    if(hm.isEmpty()) dataset.setValue("Žaden neexistuje", 1);
+    for(String var : hm.keySet())
+            {  
+              if(var.equals("")) dataset.setValue("Žaden neexistuje", 1);
+              dataset.setValue(var, new Double(hm.get(var)));
               //System.out.println("Vek: " + var + ", pocet: " + hm.get(var));  
             }
+    
     
     /*dataset.setValue("Pascal", new Double(10));*/
     return dataset;
@@ -116,39 +133,111 @@ public class GroupResult
     return Panel;
     }
     
-    public static void checkHashMap()
+    public static void check(String l, String r, String g, String g2)
     {
-        //int start = Integer.parseInt(age);
-        //int end = Integer.parseInt(age2);
+        Database var = new Database();
+        ArrayList<Person> persons = var.getDB();
+        String right = "", left = "";
         
-        /*if(!age.equals("") && !age2.equals(""))
+        if (!r.equals("") && !l.equals(""))
         {
-            Collection<?> keys = hm.keySet();
-            for(Object key : keys)
+                
+        }
+        else if(!l.equals(""))
+        {
+        for(Person pom : persons)
+        {
+            if(g.equals("1"))
+                    {
+                    String first = pom.getFirstName();
+                    if(first.equals(l))
+                        {
+                        if(g2.equals("1")) right = pom.getCountry();
+                        if(g2.equals("2")) right = pom.getCity();
+                        if(g2.equals("3")) right = pom.getUniversity();
+                        finalPerson.add(pom);
+                        Integer i = hm.get(right);
+                        if(i == null) hm.put(right, 1);
+                        else hm.put(right, i +1);
+                        }
+                    }
+            if(g.equals("2"))
+                    {
+                    String last = pom.getLastName();
+                    if(last.equals(l))
+                        {
+                        if(g2.equals("1")) right = pom.getCountry();
+                        if(g2.equals("2")) right = pom.getCity();
+                        if(g2.equals("3")) right = pom.getUniversity();
+                        finalPerson.add(pom);
+                        Integer i = hm.get(right);
+                        if(i == null) hm.put(right, 1);
+                        else hm.put(right, i +1);
+                        }
+                    }
+            if(g.equals("3"))
+                    {
+                    String age = pom.getBirthDate();
+                    if(age.equals(l))
+                        {
+                        if(g2.equals("1")) right = pom.getCountry();
+                        if(g2.equals("2")) right = pom.getCity();
+                        if(g2.equals("3")) right = pom.getUniversity();
+                        finalPerson.add(pom);
+                        Integer i = hm.get(right);
+                        if(i == null) hm.put(right, 1);
+                        else hm.put(right, i +1);
+                        }
+                    }
+        } 
+        }else if(!r.equals(""))
+        {
+        for(Person pom : persons)
             {
-            if((int)key >= start && (int)key <= end)
-                {
-                dataChart.add(key);
-               // System.out.println("Vek: " + key + ", pocet: " + hm.get(key)); 
-                }
+            
+            if(g2.equals("1"))
+                    {
+                    String first = pom.getCountry();
+                    if(first.equals(r))
+                        {
+                        if(g.equals("1")) left = pom.getFirstName();
+                        if(g.equals("2")) left = pom.getLastName();
+                        if(g.equals("3")) left = pom.getBirthDate();
+                        finalPerson.add(pom);
+                        Integer i = hm.get(left);
+                        if(i == null) hm.put(left, 1);
+                        else hm.put(left, i +1);
+                        }
+                    }
+            if(g2.equals("2"))
+                    {
+                    String first = pom.getCity();
+                    if(first.equals(r))
+                        {
+                        if(g.equals("1")) left = pom.getFirstName();
+                        if(g.equals("2")) left = pom.getLastName();
+                        if(g.equals("3")) left = pom.getBirthDate();
+                        finalPerson.add(pom);
+                        Integer i = hm.get(left);
+                        if(i == null) hm.put(left, 1);
+                        else hm.put(left, i +1);
+                        }
+                    }
+            if(g2.equals("3"))
+                    {
+                    String first = pom.getUniversity();
+                    if(first.equals(r))
+                        {
+                        if(g.equals("1")) left = pom.getFirstName();
+                        if(g.equals("2")) left = pom.getLastName();
+                        if(g.equals("3")) left = pom.getBirthDate();
+                        finalPerson.add(pom);
+                        Integer i = hm.get(left);
+                        if(i == null) hm.put(left, 1);
+                        else hm.put(left, i +1);
+                        }
+                    }
             }
-        }*/
-        
-        
-       /* for(Object var : dataChart)
-            {
-              System.out.println("Vek: " + var + ", pocet: " + hm.get(var));  
-            }*/
-    }
-    
-    public static void fillHashMap()
-    {
-        int j = 0; 
-        for(int i=10; i <= 100; i++)
-        {
-        j = i % 10;
-        hm.put(i,j);               
         }
     }
-    
 }
