@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package facebookinformator;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,6 +45,7 @@ public class MainGUI
        bSingle.setBounds(500, 80, 200, 50);
        bPeople.setBounds(500, 180, 200, 50);
        bNet.setBounds(500, 280, 200, 50);
+       
  
        bSingle.addActionListener(new ActionListener()
                {
