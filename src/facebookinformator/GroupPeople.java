@@ -50,14 +50,17 @@ public class GroupPeople
         
         JRadioButton bFirstN = new JRadioButton("Jméno");
         bFirstN.setSelected(true);
+        bFirstN.setForeground(Color.WHITE);
         bFirstN.setActionCommand("1");
         
         JRadioButton bLastN = new JRadioButton("Příjmení");
         bLastN.setSelected(false);
+        bLastN.setForeground(Color.WHITE);
         bLastN.setActionCommand("2");
         
         JRadioButton bAge = new JRadioButton("Věk");
         bAge.setSelected(false);
+        bAge.setForeground(Color.WHITE);
         bAge.setActionCommand("3");
         
         ButtonGroup group = new ButtonGroup();
@@ -71,14 +74,17 @@ public class GroupPeople
         
         JRadioButton bCountry = new JRadioButton("Země");
         bCountry.setSelected(true);
+        bCountry.setForeground(Color.WHITE);
         bCountry.setActionCommand("1");
         
         JRadioButton bCity = new JRadioButton("Město");
         bCity.setSelected(false);
+        bCity.setForeground(Color.WHITE);
         bCity.setActionCommand("2");
         
         JRadioButton bUniversity = new JRadioButton("Univerzita");
         bUniversity.setSelected(false);
+        bUniversity.setForeground(Color.WHITE);
         bUniversity.setActionCommand("3");
         
         ButtonGroup group2 = new ButtonGroup();
