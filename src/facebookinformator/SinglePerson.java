@@ -29,6 +29,7 @@ public class SinglePerson
 {
      public JFrame fS = new JFrame("Facebook Informator");
      public JButton bSubmit = new JButton("Hledej");
+     public JButton bNext = new JButton("Další");
      
      SinglePerson ()
      {
@@ -100,7 +101,8 @@ public class SinglePerson
         lUniversity.setBounds(210, 250, 100, 25);
         txtUniversity.setBounds(280, 250, 100, 25); 
         
-        bSubmit.setBounds(140, 300, 200, 50);
+        bSubmit.setBounds(130, 300, 100, 50);
+        bNext.setBounds(250, 300, 100, 50);
         
         bSubmit.addActionListener(new ActionListener()
                {
@@ -134,6 +136,7 @@ public class SinglePerson
         fS.add(txtPhone);
         fS.add(lUniversity);
         fS.add(txtUniversity);
+        fS.add(bNext);
         
         fS.setVisible(true);
      }

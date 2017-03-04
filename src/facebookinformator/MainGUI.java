@@ -39,8 +39,8 @@ public class MainGUI
         } catch (IOException e) {
         }
       
-       bSingle.setBounds(50, 50, 200, 50);
-       bPeople.setBounds(50, 110, 200, 50);
+       bSingle.setBounds(500, 150, 200, 50);
+       bPeople.setBounds(500, 250, 200, 50);
  
        bSingle.addActionListener(new ActionListener()
                {

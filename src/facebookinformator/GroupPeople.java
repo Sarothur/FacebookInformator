@@ -5,16 +5,21 @@
  */
 package facebookinformator;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
@@ -35,51 +40,80 @@ public class GroupPeople
         fG.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         try {
-            fG.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("picture.png")))));
+            fG.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("picture2.png")))));
         } catch (IOException e) {
         }
-        JLabel lTitle = new JLabel("Skupina lidí");
-        lTitle.setFont(new Font("Serif", Font.PLAIN, 44));
-        lTitle.setBounds(40, 2, 400, 44);
+        JLabel lTitle = new JLabel("Statistika lidí");
+        lTitle.setFont(new Font("Serif", Font.PLAIN, 60));
+        lTitle.setForeground(Color.WHITE);
+        lTitle.setBounds(40, 2, 400, 60);
         
-        JLabel lFirstN = new JLabel("Jméno:");
-        JTextField txtFirstN = new JTextField("");
-        lFirstN.setBounds(50, 50, 50, 25);
-        txtFirstN.setBounds(100, 50, 100, 25);
-
-        JLabel lLastN = new JLabel("Příjmení:");
-        JTextField txtLastN = new JTextField("");
-        lLastN.setBounds(50, 100, 50, 25);
-        txtLastN.setBounds(100, 100, 100, 25);
-
-        JLabel lAge = new JLabel("Věk:");
-        JTextField txtAge = new JTextField("");
-        lAge.setBounds(50, 150, 50, 25);
-        txtAge.setBounds(100, 150, 100, 25);   
+        JRadioButton bFirstN = new JRadioButton("Jméno");
+        bFirstN.setSelected(true);
         
-        JTextField txtAge2 = new JTextField("");
-        txtAge2.setBounds(210, 150, 100, 25);  
+        JRadioButton bLastN = new JRadioButton("Příjmení");
+        bLastN.setSelected(false);
         
+        JRadioButton bAge = new JRadioButton("Věk");
+        bAge.setSelected(false);
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(bFirstN);
+        group.add(bLastN);
+        group.add(bAge);
+        
+        bFirstN.setBounds(55, 100, 100, 25); bFirstN.setOpaque(false);
+        bLastN.setBounds(55, 130, 100, 25); bLastN.setOpaque(false);
+        bAge.setBounds(55, 165, 100, 25); bAge.setOpaque(false);
+        
+        JRadioButton bCountry = new JRadioButton("Země");
+        bCountry.setSelected(true);
+        
+        JRadioButton bCity = new JRadioButton("Město");
+        bCity.setSelected(false);
+        
+        JRadioButton bUniversity = new JRadioButton("Univerzita");
+        bUniversity.setSelected(false);
+        
+        ButtonGroup group2 = new ButtonGroup();
+        group2.add(bCountry);
+        group2.add(bCity);
+        group2.add(bUniversity);
+        
+        bCountry.setBounds(250, 100, 100, 25); bCountry.setOpaque(false);
+        bCity.setBounds(250, 130, 100, 25); bCity.setOpaque(false);
+        bUniversity.setBounds(250, 165, 100, 25); bUniversity.setOpaque(false);
+        
+        JTextField txtLeft = new JTextField("");
+        txtLeft.setBounds(40, 200, 100, 25);
+        JTextField txtRight = new JTextField("");
+        txtRight.setBounds(240, 200, 100, 25);
+        
+       
         bSubmit.setBounds(50, 350, 200, 50);
         
         bSubmit.addActionListener(new ActionListener()
                {
                     public void actionPerformed(ActionEvent e) 
                     {
-                     if(!txtFirstN.getText().equals("") || !txtLastN.getText().equals("") || (!txtAge.getText().equals("") && !txtAge2.getText().equals("") ))
-                        new GroupResult(txtFirstN.getText(), txtLastN.getText(), txtAge.getText(), txtAge2.getText());  
+                     if(!txtLeft.getText().equals(""))
+                        new GroupResult(txtLeft.getText());  
                     }
                 });
         
-        fG.add(lFirstN);
-        fG.add(txtFirstN);
-        fG.add(lLastN);
-        fG.add(txtLastN);
-        fG.add(lAge);
-        fG.add(txtAge);   
+       
+        
         fG.add(bSubmit);
         fG.add(lTitle);
-        fG.add(txtAge2);
+        fG.add(bFirstN);
+        fG.add(bLastN);
+        fG.add(bAge);
+        fG.add(txtLeft);
+        
+        fG.add(bCountry);
+        fG.add(bCity);
+        fG.add(bUniversity);
+        fG.add(txtRight);
         
         fG.setVisible(true);
      
