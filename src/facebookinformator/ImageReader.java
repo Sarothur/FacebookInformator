@@ -7,6 +7,7 @@ package facebookinformator;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -18,7 +19,12 @@ import java.net.URL;
  */
 public class ImageReader {
     
-    ImageReader() throws MalformedURLException, IOException{
+    ImageReader() throws IOException{
+        recreate();
+        
+    }
+    
+    public void recreate() throws MalformedURLException, IOException{
         URL url = new URL("http://lorempixel.com/100/100/");
         InputStream in = new BufferedInputStream(url.openStream());
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -31,6 +37,10 @@ public class ImageReader {
             out.close();
         in.close();
         byte[] response = out.toByteArray();
+        
+        FileOutputStream fos = new FileOutputStream("borrowed_image.jpg");
+        fos.write(response);
+        fos.close();
     }
     
 }
