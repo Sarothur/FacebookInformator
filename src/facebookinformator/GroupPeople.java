@@ -96,13 +96,14 @@ public class GroupPeople
         txtRight.setBounds(240, 200, 100, 25);
         
        
-        bSubmit.setBounds(50, 350, 200, 50);
+        bSubmit.setBounds(90, 250, 200, 50);
         
         bSubmit.addActionListener(new ActionListener()
                {
                     public void actionPerformed(ActionEvent e) 
                     {
-                     if(!txtLeft.getText().equals("") || !txtRight.getText().equals(""))
+                     if((!txtLeft.getText().equals("") && txtRight.getText().equals(""))
+                       || (!txtRight.getText().equals("") && txtLeft.getText().equals("")))
                         new GroupResult(txtLeft.getText(), txtRight.getText(), group.getSelection().getActionCommand(), group2.getSelection().getActionCommand());  
                     }
                 });
