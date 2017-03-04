@@ -23,7 +23,7 @@ public class Database
     Database()
     {
         
-        String csvFile = "MOCK_DATA.csv";
+        String csvFile = "MOCK_DATA2.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -36,9 +36,11 @@ public class Database
 
                 // use comma as separator
                 String[] onePerson = line.split(cvsSplitBy);
-                everyone.add(new Person(onePerson[0],onePerson[1],onePerson[2],onePerson[3],onePerson[4],onePerson[5],onePerson[6],onePerson[7],onePerson[8]));
-                System.out.println(everyone.get(i).getFirstName() + " " + everyone.get(i).getLastName() + " " + everyone.get(i).getEmail() + " " + everyone.get(i).getGender() + " " + everyone.get(i).getCity() + " " + everyone.get(i).getCountry() + " " + everyone.get(i).getIP() + " " + everyone.get(i).getTelephone() + " " + everyone.get(i).getUniversity());
+                everyone.add(new Person(onePerson[1],onePerson[2],onePerson[3],onePerson[4],onePerson[5],onePerson[6],onePerson[7],onePerson[8],onePerson[9], onePerson[10]));
+                System.out.println(everyone.get(i).getFirstName() + " " + everyone.get(i).getLastName() + " " + everyone.get(i).getEmail() + " " + everyone.get(i).getGender() + " " + everyone.get(i).getCity() + " " + everyone.get(i).getCountry() + " " + everyone.get(i).getIP() + " " + everyone.get(i).getTelephone() + " " + everyone.get(i).getUniversity() + " " + everyone.get(i).getBirthDate());
                 i++;
+                
+                
 
             }
 

@@ -16,7 +16,7 @@ public class Person {
     private String firstName, lastName, email, gender, city, country, ipAddress, telephone, university, birthdate;
     private Image img = null;
     
-    Person(String pfirstName,String plastName, String pemail, String pgender, String pcity,String pcountry, String pipAddress,String ptelephone, String puniversity){
+    Person(String pfirstName,String plastName, String pemail, String pgender, String pcity,String pcountry, String pipAddress,String ptelephone, String puniversity, String pbirthdate){
         firstName = pfirstName; 
         lastName = plastName;
         email = pemail;
@@ -26,6 +26,7 @@ public class Person {
         ipAddress = pipAddress;
         telephone = ptelephone;
         university = puniversity; 
+        birthdate = pbirthdate;
     }
     void setImage(Image i){
         img = i;
@@ -57,6 +58,10 @@ public class Person {
     String getUniversity(){
         return university;
     }
+    String getBirthDate(){
+        return birthdate;
+    }
+            
                     
     void setFirstName(String param){
         firstName = param;
@@ -83,7 +88,11 @@ public class Person {
         telephone = param;
     }
     void setUniversity(String param){
-       university = param;
+        university = param;
     }
+    void setBirthDate(String param){
+        birthdate = param;
+    }
+            
     
 }
