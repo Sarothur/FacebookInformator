@@ -26,6 +26,7 @@ public class MainGUI
     public JFrame f = new JFrame("Facebook Informator");
     public JButton bSingle = new JButton("Vyhledej jednotlivce");
     public JButton bPeople = new JButton("Statistika skupiny lidi");
+    public JButton bNet = new JButton("Síť měst");
     
     MainGUI()
     {
@@ -39,8 +40,9 @@ public class MainGUI
         } catch (IOException e) {
         }
       
-       bSingle.setBounds(500, 150, 200, 50);
-       bPeople.setBounds(500, 250, 200, 50);
+       bSingle.setBounds(500, 80, 200, 50);
+       bPeople.setBounds(500, 180, 200, 50);
+       bNet.setBounds(500, 280, 200, 50);
  
        bSingle.addActionListener(new ActionListener()
                {
@@ -58,8 +60,17 @@ public class MainGUI
                     }
                 });
        
+       bNet.addActionListener(new ActionListener()
+               {
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                     new Net();  
+                    }
+                });
+       
        f.add(bSingle);
        f.add(bPeople);
+       f.add(bNet);
        f.setVisible(true);    
     }
 }
